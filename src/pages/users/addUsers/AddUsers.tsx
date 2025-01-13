@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Form, Input, Select, Button, Space } from "antd";
+import { Form, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { SelectField } from "../../../components/Fields/SelectField";
 import { InputField } from "../../../components/Fields/InputField";
+import CustomButton from "../../../components/button/FormButton";
 
 interface UserForm {
   id: string;
@@ -35,7 +36,7 @@ export default function AddUsers() {
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-5xl mx-auto p-6">
         <Form layout="vertical">
-          <Form.Item label="Select Grandpa" className="mb-6">
+          <Form.Item label="Select Grandpa" className="mb-6 w-1/3 ">
             <SelectField
               placeholder="Select Grandpa"
               options={[
@@ -51,58 +52,42 @@ export default function AddUsers() {
               className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6"
             >
               <Form.Item label="ID">
-                <InputField 
-                placeholder="Enter ID"/>
+                <InputField placeholder="Enter ID" />
               </Form.Item>
 
               <Form.Item label="Name">
-                <Input
-                  placeholder="Enter Name"
-                  value={userForms[index].name}
-                  onChange={(e) => {
-                    const newForms = [...userForms];
-                    newForms[index].name = e.target.value;
-                    setUserForms(newForms);
-                  }}
-                />
+                <InputField placeholder="Enter Name" />
               </Form.Item>
 
               <Form.Item label="Age">
-                <Input
-                  placeholder="Enter Age"
-                  value={userForms[index].age}
-                  onChange={(e) => {
-                    const newForms = [...userForms];
-                    newForms[index].age = e.target.value;
-                    setUserForms(newForms);
-                  }}
-                />
+                <InputField placeholder="Enter Age" />
               </Form.Item>
 
               <Form.Item label="Veteran">
-                <Input
-                  placeholder="Enter Yes/No"
-                  value={userForms[index].veteran}
-                  onChange={(e) => {
-                    const newForms = [...userForms];
-                    newForms[index].veteran = e.target.value;
-                    setUserForms(newForms);
-                  }}
+                <SelectField
+                  placeholder="Select Yes/No"
+                  options={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
+                  ]}
                 />
               </Form.Item>
 
-              <Space>
-                <Button
-                  type="primary"
-                  onClick={() => handleSave(index)}
-                  className="bg-blue-500"
-                >
-                  Save
-                </Button>
-                <Button type="primary" className="bg-[#1a1f2e]">
-                  Add Children
-                </Button>
-              </Space>
+              <CustomButton
+                type="submit"
+                onClick={() => handleSave(index)}
+                className="bg-blue-500"
+              >
+                Save
+              </CustomButton>
+
+              <CustomButton
+                type="submit"
+                onClick={() => handleSave(index)}
+                className="bg-[#1a1f2e]"
+              >
+                Add Children
+              </CustomButton>
             </div>
           ))}
 
