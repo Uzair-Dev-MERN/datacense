@@ -1,17 +1,16 @@
+import { Outlet } from "react-router-dom";
 import { Header } from "../header/Header";
 import { Sidebar } from "../sidebar/Sidebar";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Sidebar />
       <div className="pl-64">
         <Header />
-        <main className="p-6">{children}</main>
+        <main className="p-6">
+          <Outlet />
+        </main>
       </div>
     </div>
   );
